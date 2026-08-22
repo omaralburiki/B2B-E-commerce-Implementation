@@ -90,10 +90,4 @@ diagrams/
 
 The complete project dossier, including pricing tier design, delivery rules, integration architecture, and evidence mapping, is available at:
 
-****
 
----
-
-## License
-
-MIT License
