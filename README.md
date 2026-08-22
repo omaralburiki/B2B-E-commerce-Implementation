@@ -90,4 +90,5 @@ diagrams/
 
 The complete project dossier, including pricing tier design, delivery rules, integration architecture, and evidence mapping, is available at:
 
+https://github.com/omaralburiki/B2B-E-commerce-Implementation/blob/main/docs/project%20dossier.md
 
