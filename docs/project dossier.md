@@ -62,6 +62,9 @@ Requirements were gathered through stakeholder workshops and business discussion
 ### Catalog Structuring
 The product catalog covered 8,000+ active SKUs, sourced live from the ERP rather than maintained separately on the platform. Any stock or pricing change in the ERP reflected immediately on the platform.
 
+### Product Content Coordination
+Stock quantities and pricing were fully automated from the ERP, but product content such as images, descriptions, and translations was not stored in the ERP and required direct entry and maintenance on the platform. Coordinated this content workflow with a small support team, keeping it separate from the automated stock and pricing feed to preserve the ERP's role as the single source of truth for those two data points.
+
 ### Pricing Model
 A 5-tier pricing structure was designed, mapped to customer risk and payment terms rather than a flat wholesale discount:
 
@@ -105,6 +108,12 @@ I coordinated UAT with business users and also performed hands-on testing myself
 ## Launch
 
 The platform launched as the digital extension of the existing wholesale channel, restricted to verified B2B accounts from day one. No open self-service registration into an active, ordering-capable account.
+
+---
+
+## Customer Onboarding Support
+
+Occasionally supported customer conversations during account onboarding, including product walkthroughs and commercial discussions, alongside the commercial team. Final negotiation and closing responsibility for these accounts sat with the commercial team, not with this role independently.
 
 ---
 
@@ -207,7 +216,7 @@ flowchart LR
 - Implemented a 5-tier pricing model.
 - Defined 4 regional delivery zones.
 
-**Note on unverified targets:** The project's KPI framework (order volume growth, payment success rate, inventory sync accuracy, cart abandonment rate, and similar figures) exists as a baseline-to-target table in supporting documentation. None of these have been confirmed by Omar as measured, achieved outcomes. They are treated as **Proposed TO-BE Targets**, not results, and are excluded from this Business Outcomes section pending confirmation.
+
 
 ---
 
@@ -221,7 +230,8 @@ flowchart LR
 - UAT Coordination and Hands-on Testing
 - Go/No-Go Launch Decision Participation
 - ERP-to-Platform Integration Coordination (ERP, HyperPay, SMS)
+- Product Content Coordination (catalog images, descriptions, translations)
+- Small Team Coordination (non-managerial)
 - Jira Backlog Management
 
 ---
-
