@@ -87,7 +87,7 @@ Following the ERP implementation that gave the business reliable real-time inven
 
 ---
 
-## 5. Stakeholders and RACI
+## 5. Stakeholders and Responsibilities 
 
 | Stakeholder | Role | Requirements Involvement |
 |---|---|---|
@@ -241,7 +241,6 @@ Each integration was coordinated with the vendor and validated as part of the te
 
 I coordinated UAT with business users and also performed hands-on testing myself to validate business processes and system functionality, rather than solely relying on the vendor's own QA. I participated directly in the Go/No-Go decision ahead of launch, and acted as the primary liaison between business stakeholders, the external service provider, and the technical team to ensure business requirements were correctly implemented and that issues were resolved before production deployment.
 
-**Note on KPI targets:** A baseline-to-target framework exists for post-launch metrics (order volume growth, payment success rate, inventory sync accuracy, cart abandonment rate). These are documented as proposed targets, not confirmed achieved outcomes, and are excluded from this specification's validation results accordingly.
 
 ---
 
