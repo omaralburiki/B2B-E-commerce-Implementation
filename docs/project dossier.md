@@ -45,7 +45,7 @@ Wholesale ordering had previously been physical-only: customers visited a branch
 
 **Title:** Business Systems Analyst
 **Company:** Mohd. Saeed Balbid Company
-**Duration:** Feb 2023 – May 2025 (formal project start, aligned with vendor contracting; sequential to, not concurrent with, the Multi-Branch ERP Implementation)
+**Duration:** Feb 2023 – May 2025 
 
 My involvement began before the formal project start. During the preceding period, following the ERP implementation, I studied and scoped the planned digital commerce channel ahead of the formal engagement, positioning me as part of the decision to pursue the project, not only its later execution. Once the project formally started, aligned with vendor contracting, the platform itself was built by an external service provider. This was a vendor-led development effort, not an internal build. My responsibility was designing the order lifecycle, pricing model, and delivery rules based on requirements gathered through stakeholder workshops and business discussions, then coordinating with the vendor and technical team through testing and launch to ensure those requirements were implemented correctly.
 
@@ -115,11 +115,6 @@ The platform launched as the digital extension of the existing wholesale channel
 
 Occasionally supported customer conversations during account onboarding, including product walkthroughs and commercial discussions, alongside the commercial team. Final negotiation and closing responsibility for these accounts sat with the commercial team, not with this role independently.
 
----
-
-## Post-Launch Optimization
-
-Not documented in PKB or confirmed by Omar beyond initial launch. Any post-launch iteration, feature changes, or optimization activity should be added here only once confirmed, currently marked as an open item rather than filled in.
 
 ---
 
