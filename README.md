@@ -2,7 +2,7 @@
 
 A B2B ordering platform built by an external vendor on top of a live ERP. I owned the business side: who can order, how customers are priced and given credit, how delivery is charged, and how the platform works with the ERP.
 
-**Mohd. Saeed Balbid Company · Feb 2023 – May 2025 · Role: E-commerce Solutions Analyst**
+**FMCG retailer and wholesaler, Saudi Arabia · Feb 2023 – May 2025 · Role: E-commerce Solutions Analyst**
 
 ## Background
 
@@ -18,8 +18,8 @@ I studied and scoped the channel before the project formally started, so I was p
 
 | Tier | Segment | Terms |
 |---|---|---|
-| 1 | Hotels and large F&B chains | Net 30, promissory note required |
-| 2 | Restaurants and cafes | Net 15, promissory note required |
+| 1 | Hotels and large F&B chains | Longer net terms, signed guarantee required |
+| 2 | Restaurants and cafes | Shorter net terms, signed guarantee required |
 | 3 | Charities and NGOs | Prepaid |
 | 4 | Resellers and delivery apps | Prepaid |
 | 5 | Other B2B customers | Prepaid |
@@ -46,5 +46,5 @@ The platform depends on the ERP delivered in the [Multi-Branch ERP Implementatio
 
 ## Documents
 
-- [Project Dossier](docs/Project-Dossier.md): requirements, pricing and delivery design, integrations, testing, and diagrams.
+- [Full case study](docs/Project-Dossier.md): requirements, pricing and delivery design, integrations, testing, and diagrams.
 - [Business Requirements & Design Specification](docs/BRD.md): platform requirements, business rules, and UAT validation. This is a representative version; the original belongs to the company.
