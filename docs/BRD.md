@@ -1,6 +1,7 @@
 # B2B E-commerce Platform
 ## Business Requirements & Design Specification
 
+> **Note on this document:** This is a representative version of the requirements specification, rebuilt for this portfolio from the project records. The original belongs to the company and is not published. Every requirement, rule, and figure here matches the project dossier; nothing has been added.
 
 ---
 
@@ -9,12 +10,12 @@
 | Field | Value |
 |---|---|
 | Document Title | B2B E-commerce Platform: Business Requirements & Design Specification |
-| Prepared By | Omar Ahmed Al-Buriki, Business Systems Analyst |
+| Prepared By | Omar Ahmed Al-Buriki, E-commerce Solutions Analyst |
 | Company | Mohd. Saeed Balbid Company |
 | Project Duration | Feb 2023 to May 2025 (formal start; early scoping preceded this period) |
 | Development Model | Vendor-led (external service provider); business-side requirements owned internally |
 | Related Prior Engagement | Multi-Branch ERP Implementation (this platform depends on that ERP as its single source of truth) |
-| Document Status | Representative sample, reconstructed from project dossier |
+| Document Status | Representative version (see note above) |
 
 ---
 
@@ -24,7 +25,7 @@
 2. Business Context and Problem Statement
 3. Business Objectives
 4. Scope
-5. Stakeholders and RACI
+5. Stakeholders and Responsibilities
 6. Platform Requirements
 7. Order Lifecycle and Pricing Model Design
 8. Regional Business Rule Design (Delivery Logic)
@@ -72,7 +73,7 @@ Following the ERP implementation that gave the business reliable real-time inven
 - 8,000+ active SKUs, sourced live from the ERP.
 - 5-tier customer segmentation and pricing engine.
 - Real-time ERP inventory and pricing integration. The ERP remained the single source of truth; no platform-side stock table.
-- HyperPay payment gateway integration (MADA, Visa, Mastercard, Apple Pay).
+- Payment gateway integration (MADA, Visa, Mastercard, Apple Pay).
 - Regional delivery rules with minimum order and delivery fee logic.
 - Logistics API integration for fulfillment tracking.
 - Customer registration and verification workflow (CR and VAT upload, business type classification, tier assignment).
@@ -87,17 +88,17 @@ Following the ERP implementation that gave the business reliable real-time inven
 
 ---
 
-## 5. Stakeholders and Responsibilities 
+## 5. Stakeholders and Responsibilities
 
 | Stakeholder | Role | Requirements Involvement |
 |---|---|---|
-| Business Systems Analyst (Omar) | Requirements owner | Gathered requirements through workshops; designed order lifecycle, pricing model, and delivery rules; reviewed vendor implementation against specification |
+| E-commerce Solutions Analyst (Omar) | Requirements owner | Gathered requirements through workshops; designed order lifecycle, pricing model, and delivery rules; reviewed vendor implementation against specification |
 | Finance Manager | Requirement source, approval authority | Credit terms design, credit limit assignment at account activation |
 | Commercial / Sales Manager | Requirement source | Customer segmentation, tier criteria |
 | Operations Manager | Requirement source | Delivery logic, fulfillment coordination |
 | IT Administrator | Technical liaison | ERP integration coordination |
 | External Service Provider (Vendor) | Technical delivery | Platform build against approved specification |
-| HyperPay | Integration partner | Payment gateway for prepaid-tier checkout |
+| Payment Gateway Provider | Integration partner | Payment processing for prepaid-tier checkout |
 | Logistics Provider | Integration partner | Fulfillment tracking |
 | B2B Customers | End users | Platform ordering and account management |
 
@@ -149,11 +150,11 @@ A 5-tier pricing structure was designed, mapped to customer risk and payment ter
 | FR-02 | For Tier 1 and Tier 2 accounts, the platform shall require a signed promissory note before account activation | Section 7.1 |
 | FR-03 | For Tier 3, 4, and 5 accounts, the platform shall activate the account directly upon tier assignment | Section 7.1 |
 | FR-04 | On checkout for a net-term account (Tier 1 or 2), the platform shall verify available credit and block the order if the customer's outstanding balance exceeds their approved credit limit | Section 9, BRule-02 |
-| FR-05 | On checkout for a prepaid-tier account (Tier 3, 4, or 5), the platform shall route payment through HyperPay, supporting MADA, Visa, Mastercard, and Apple Pay | BR-04, Section 10 |
+| FR-05 | On checkout for a prepaid-tier account (Tier 3, 4, or 5), the platform shall route payment through the payment gateway, supporting MADA, Visa, Mastercard, and Apple Pay | BR-04, Section 10 |
 
 ### 7.3 Order Lifecycle
 
-The platform served verified B2B customers exclusively, replacing physical-only wholesale ordering with 24/7 self-service. Once an account is active, the customer places orders directly against live ERP stock and pricing data. Net-term accounts are subject to the credit check in FR-04 at checkout; prepaid accounts are routed to HyperPay for payment. This design credit-checks net-term accounts using the same principle already enforced in the ERP implementation, applying the earlier project's credit control logic to a new channel rather than reinventing it.
+The platform served verified B2B customers exclusively, replacing physical-only wholesale ordering with 24/7 self-service. Once an account is active, the customer places orders directly against live ERP stock and pricing data. Net-term accounts are subject to the credit check in FR-04 at checkout; prepaid accounts are routed to the payment gateway. This design credit-checks net-term accounts using the same principle already enforced in the ERP implementation, applying the earlier project's credit control logic to a new channel rather than reinventing it.
 
 ---
 
@@ -201,7 +202,7 @@ Delivery logic was defined by region rather than a flat nationwide rate. Minimum
 | Integration | Purpose | Detail |
 |---|---|---|
 | ERP | Real-time stock and pricing feed | ERP remains the single source of truth for both; no platform-side stock table |
-| HyperPay | Payment gateway | Supports MADA, Visa, Mastercard, and Apple Pay for prepaid-tier checkout |
+| Payment gateway | Payment processing | Supports MADA, Visa, Mastercard, and Apple Pay for prepaid-tier checkout |
 | SMS | Customer communication | Coordinated as part of the platform's communication capability |
 | Logistics API | Fulfillment tracking | Order status tracking after confirmation |
 
@@ -216,7 +217,7 @@ Each integration was coordinated with the vendor and validated as part of the te
 | Verification review | Registration submitted | Approved (tier assigned) or rejected with reason |
 | Promissory note | Tier 1 or Tier 2 assignment | Required before account activation |
 | Credit check | Checkout, Tier 1 or Tier 2 account | Order blocked if credit limit exceeded |
-| Payment routing | Checkout, Tier 3, 4, or 5 account | Routed through HyperPay |
+| Payment routing | Checkout, Tier 3, 4, or 5 account | Routed through the payment gateway |
 
 ---
 
@@ -237,7 +238,7 @@ Each integration was coordinated with the vendor and validated as part of the te
 | BRule-01 (Tier-based activation) | UAT confirmed promissory note gating for Tier 1 and Tier 2, direct activation for Tier 3 through 5 | Confirmed |
 | BRule-02 (Credit check at checkout) | UAT confirmed order blocking behavior for net-term accounts exceeding credit limit | Confirmed |
 | BRule-03 (Regional delivery rules) | UAT confirmed automatic fee calculation and minimum order enforcement varied correctly by region | Confirmed |
-| HyperPay integration | UAT confirmed prepaid-tier checkout completed successfully across supported payment methods | Confirmed |
+| Payment gateway integration | UAT confirmed prepaid-tier checkout completed successfully across supported payment methods | Confirmed |
 
 I coordinated UAT with business users and also performed hands-on testing myself to validate business processes and system functionality, rather than solely relying on the vendor's own QA. I participated directly in the Go/No-Go decision ahead of launch, and acted as the primary liaison between business stakeholders, the external service provider, and the technical team to ensure business requirements were correctly implemented and that issues were resolved before production deployment.
 
