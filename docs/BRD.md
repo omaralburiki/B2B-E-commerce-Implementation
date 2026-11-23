@@ -11,7 +11,7 @@
 |---|---|
 | Document Title | B2B E-commerce Platform: Business Requirements & Design Specification |
 | Prepared By | Omar Ahmed Al-Buriki, E-commerce Solutions Analyst |
-| Company | Mohd. Saeed Balbid Company |
+| Organization | Multi-branch FMCG retailer and wholesaler, Saudi Arabia |
 | Project Duration | Feb 2023 to May 2025 (formal start; early scoping preceded this period) |
 | Development Model | Vendor-led (external service provider); business-side requirements owned internally |
 | Related Prior Engagement | Multi-Branch ERP Implementation (this platform depends on that ERP as its single source of truth) |
@@ -123,7 +123,7 @@ Following the ERP implementation that gave the business reliable real-time inven
 5. If not verified, the application is rejected with a reason provided to the applicant.
 6. If verified, the customer is assigned to a pricing tier (1 of 5) based on business type classification.
 7. Finance sets the credit limit for the account.
-8. For Tier 1 or Tier 2 accounts, a promissory note is required before activation.
+8. For Tier 1 or Tier 2 accounts, a signed guarantee is required before activation.
 9. For Tier 3, 4, and 5 accounts, the account is activated directly.
 
 ---
@@ -136,8 +136,8 @@ A 5-tier pricing structure was designed, mapped to customer risk and payment ter
 
 | Tier | Segment | Payment Terms | Activation Requirement |
 |---|---|---|---|
-| Tier 1 | Hotels / Large F&B Chains | Net 30 days | Promissory note required |
-| Tier 2 | Restaurants / Cafes | Net 15 days | Promissory note required |
+| Tier 1 | Hotels / Large F&B Chains | Longer net terms | Signed guarantee required |
+| Tier 2 | Restaurants / Cafes | Shorter net terms | Signed guarantee required |
 | Tier 3 | Charities / NGOs | Prepaid | None |
 | Tier 4 | Resellers / Delivery Apps | Prepaid | None |
 | Tier 5 | Standard / Other B2B | Prepaid | None |
@@ -147,7 +147,7 @@ A 5-tier pricing structure was designed, mapped to customer risk and payment ter
 | ID | Functional Requirement | Related Requirement |
 |---|---|---|
 | FR-01 | On tier assignment, the platform shall apply the pricing and payment terms corresponding to the assigned tier | BR-01, Section 7.1 |
-| FR-02 | For Tier 1 and Tier 2 accounts, the platform shall require a signed promissory note before account activation | Section 7.1 |
+| FR-02 | For Tier 1 and Tier 2 accounts, the platform shall require a signed guarantee before account activation | Section 7.1 |
 | FR-03 | For Tier 3, 4, and 5 accounts, the platform shall activate the account directly upon tier assignment | Section 7.1 |
 | FR-04 | On checkout for a net-term account (Tier 1 or 2), the platform shall verify available credit and block the order if the customer's outstanding balance exceeds their approved credit limit | Section 9, BRule-02 |
 | FR-05 | On checkout for a prepaid-tier account (Tier 3, 4, or 5), the platform shall route payment through the payment gateway, supporting MADA, Visa, Mastercard, and Apple Pay | BR-04, Section 10 |
@@ -177,7 +177,7 @@ Delivery logic was defined by region rather than a flat nationwide rate. Minimum
 
 ### BRule-01: Tier-Based Account Activation
 - **Trigger:** Customer verification approved and tier assigned.
-- **System Action:** Net-term tiers (1 and 2) require a signed promissory note before activation. Prepaid tiers (3, 4, and 5) activate directly.
+- **System Action:** Net-term tiers (1 and 2) require a signed guarantee before activation. Prepaid tiers (3, 4, and 5) activate directly.
 - **Override:** None documented.
 
 ### BRule-02: Net-Term Credit Check at Checkout
@@ -215,7 +215,7 @@ Each integration was coordinated with the vendor and validated as part of the te
 | Check Point | Trigger | Outcome |
 |---|---|---|
 | Verification review | Registration submitted | Approved (tier assigned) or rejected with reason |
-| Promissory note | Tier 1 or Tier 2 assignment | Required before account activation |
+| Signed guarantee | Tier 1 or Tier 2 assignment | Required before account activation |
 | Credit check | Checkout, Tier 1 or Tier 2 account | Order blocked if credit limit exceeded |
 | Payment routing | Checkout, Tier 3, 4, or 5 account | Routed through the payment gateway |
 
@@ -235,7 +235,7 @@ Each integration was coordinated with the vendor and validated as part of the te
 | Requirement | Validation Approach | Outcome |
 |---|---|---|
 | BR-04 (ERP as source of truth) | UAT confirmed live stock and pricing reflected immediately from the ERP with no platform-side lag or discrepancy | Confirmed |
-| BRule-01 (Tier-based activation) | UAT confirmed promissory note gating for Tier 1 and Tier 2, direct activation for Tier 3 through 5 | Confirmed |
+| BRule-01 (Tier-based activation) | UAT confirmed guarantee gating for Tier 1 and Tier 2, direct activation for Tier 3 through 5 | Confirmed |
 | BRule-02 (Credit check at checkout) | UAT confirmed order blocking behavior for net-term accounts exceeding credit limit | Confirmed |
 | BRule-03 (Regional delivery rules) | UAT confirmed automatic fee calculation and minimum order enforcement varied correctly by region | Confirmed |
 | Payment gateway integration | UAT confirmed prepaid-tier checkout completed successfully across supported payment methods | Confirmed |
