@@ -1,94 +1,50 @@
 # B2B E-commerce Implementation
 
-Business-side design and delivery of a B2B e-commerce platform, extending an established multi-branch operation into a digital ordering channel integrated with the live ERP, HyperPay, and SMS.
+A B2B ordering platform built by an external vendor on top of a live ERP. I owned the business side: who can order, how customers are priced and given credit, how delivery is charged, and how the platform works with the ERP.
 
----
+**Mohd. Saeed Balbid Company · Feb 2023 – May 2025 · Role: E-commerce Solutions Analyst**
 
-## Overview
+## Background
 
-Business-side design and delivery of a B2B e-commerce platform extending an established multi-branch FMCG operation into a digital ordering channel. Integrated with the live ERP for real-time inventory and pricing, HyperPay for payment processing, and a logistics provider for fulfillment. The platform served verified B2B customers exclusively, replacing physical-only wholesale ordering with 24/7 self-service.
+Wholesale customers could only order in person. They visited a branch, handed over a paper draft, waited for manual picking, and received an invoice adjusted by hand. Once the ERP was live and its stock and prices could be trusted, the company decided to open a digital channel for verified business customers, available at any hour.
 
----
+I studied and scoped the channel before the project formally started, so I was part of the decision to build it. From early 2023 the platform was my main responsibility, and ERP work became secondary support.
 
-## Business Context
+## What I designed
 
-Wholesale ordering had previously been physical-only: customers visited a branch in person, submitted a paper draft, waited on manual picking, and received a manually adjusted invoice, with no self-service option and no ability to order outside business hours. Following the ERP implementation that gave the business reliable real-time inventory and pricing data, the organization extended that operational foundation into a digital B2B ordering channel.
+**Customer access.** Only verified businesses can order. A customer registers, uploads CR and VAT documents, selects a business type, and waits for review. An approved account is assigned a pricing tier, and Finance sets its credit limit.
 
----
+**Pricing and credit.** The tiers follow payment risk instead of a single wholesale discount.
 
-## Problem Statement
+| Tier | Segment | Terms |
+|---|---|---|
+| 1 | Hotels and large F&B chains | Net 30, promissory note required |
+| 2 | Restaurants and cafes | Net 15, promissory note required |
+| 3 | Charities and NGOs | Prepaid |
+| 4 | Resellers and delivery apps | Prepaid |
+| 5 | Other B2B customers | Prepaid |
 
-Wholesale customers had no self-service ordering option and could only order during business hours through an in-person, staff-mediated process. The business needed a digital channel that remained accurate against live inventory and pricing, without introducing the sync risk of a duplicate, platform-side data source.
+A net-term order that goes over the customer's credit limit is blocked at checkout, the same control the ERP already applied in the branches.
 
----
+**Delivery.** Minimum order value, delivery fee, and free-delivery threshold differ across 4 regions and are calculated at checkout.
 
-## Objectives
+**Integrations.** The platform reads stock and prices live from the ERP and keeps no copy of its own, so the two cannot drift apart. I also defined the requirements for the payment gateway (MADA, Visa, Mastercard, Apple Pay), SMS notifications, and the logistics provider's tracking API.
 
-- Enable 24/7 digital ordering for verified B2B customers.
-- Reduce manual wholesale order handling by shifting volume to the digital channel.
-- Enforce tiered pricing digitally, correctly applied per verified customer segment.
-- Prevent orders below regional minimum thresholds.
-- Maintain real-time inventory accuracy between the platform and the ERP.
-- Enforce credit terms structurally: net terms for lower-risk tiers, prepayment for higher-risk tiers.
+## Working with the vendor
 
----
+The vendor built the platform and I owned the requirements. I turned workshop outcomes into specifications, reviewed what the vendor delivered against them, and escalated gaps. In Jira I ordered the backlog by how important each requirement was for the next release, logged defects with the vendor, and followed them up. Before launch I coordinated UAT with business users, tested the platform myself, and took part in the Go/No-Go decision.
 
-## Scope
+Product content such as images, descriptions, and translations was not stored in the ERP, so I coordinated a small team that maintained it on the platform. I also joined some customer onboarding conversations with the commercial team; negotiation and closing stayed with that team.
 
-- 8,000+ active SKUs.
-- 5-tier customer segmentation and pricing engine.
-- Real-time ERP inventory and pricing integration.
-- HyperPay payment gateway integration.
-- Regional delivery rules with minimum order and delivery fee logic.
-- Customer registration and verification workflow.
+## Outcome
 
----
+The platform launched for verified B2B accounts only and supported more than 500 B2B customers across 8,000+ active SKUs. Wholesale ordering moved from branch visits to self-service, with less manual order handling. A set of post-launch KPI targets was drafted, but those were targets, not measured results, so they are not reported here.
 
-## My Role
+## Related project
 
-**Business Systems Analyst** (Feb 2023 – May 2025). Involvement began before the formal project start: during the preceding period, I studied and scoped the planned digital commerce channel ahead of the formal engagement with the vendor. The platform itself was built by an external service provider once the project formally started; my responsibility was designing the order lifecycle, pricing model, and delivery rules based on requirements gathered through stakeholder workshops, then coordinating with the vendor and technical team through testing and launch, including hands-on testing and participation in the Go/No-Go launch decision.
+The platform depends on the ERP delivered in the [Multi-Branch ERP Implementation](https://github.com/omaralburiki/Multi-Branch-ERP-Implementation) as its source of truth for stock and prices.
 
----
+## Documents
 
-## Key Deliverables
-
-- B2B Ordering Platform (vendor-built, business-specified)
-- ERP, HyperPay, and SMS Integration
-- Regional Delivery Logic
-- 5-Tier Pricing Engine
-
----
-
-## Business Impact
-
-- Digitized the B2B ordering process, replacing a physical-only wholesale journey with a self-service digital channel.
-- Improved inventory synchronization between the platform and the ERP.
-- Reduced manual order processing.
-- Supported business operations involving more than 500 B2B customers.
-- Implemented a 5-tier pricing model and defined 4 regional delivery zones.
-
----
-
-## Skills Demonstrated
-
-B2B E-commerce Platform Requirements Design · Order Lifecycle and Pricing Model Design · Vendor Management and Coordination · UAT Coordination and Hands-on Testing · Go/No-Go Launch Decision Participation · ERP Integration Coordination · Jira Backlog Management
-
----
-
-## Repository Structure
-
-```
-README.md
-docs/Project-Dossier.md
-images/
-diagrams/
-```
-
----
-
-## Full Documentation
-
-The complete project dossier, including pricing tier design, delivery rules, integration architecture, and evidence mapping, is available at:
-
-https://github.com/omaralburiki/B2B-E-commerce-Implementation/blob/main/docs/project%20dossier.md
-
+- [Project Dossier](docs/Project-Dossier.md): requirements, pricing and delivery design, integrations, testing, and diagrams.
+- [Business Requirements & Design Specification](docs/BRD.md): platform requirements, business rules, and UAT validation. This is a representative version; the original belongs to the company.
