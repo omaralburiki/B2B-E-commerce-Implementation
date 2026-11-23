@@ -1,130 +1,32 @@
 # B2B E-commerce Implementation
 
----
+**Case study** · FMCG retailer and wholesaler, Saudi Arabia · Feb 2023 – May 2025 · Role: E-commerce Solutions Analyst
 
-## Overview
+This is the full write-up behind the [README](../README.md). It covers why the channel was needed, what I designed, how I worked with the vendor, and how the platform was tested and launched. The formal requirements are in the [Business Requirements & Design Specification](BRD.md).
 
-Business-side design and delivery of a B2B e-commerce platform extending an established multi-branch FMCG operation into a digital ordering channel. Integrated with the live ERP for real-time inventory and pricing, a payment gateway for payment processing, and a logistics provider for fulfillment. The platform served verified B2B customers exclusively, replacing physical-only wholesale ordering with 24/7 self-service.
+## Why the channel was needed
 
----
+Wholesale ordering was physical only. A customer visited a branch, handed over a paper draft, waited for manual picking, and received an invoice adjusted by hand. There was no self-service and no way to order outside business hours. Once the ERP was live and its stock and prices could be trusted, the company decided to extend it into a digital ordering channel for business customers.
 
-## Business Context
+The main design constraint was clear from the start: verified B2B customers had to be able to order at any hour, without the platform keeping its own copy of stock or prices that could drift away from the ERP.
 
-Wholesale ordering had previously been physical-only: customers visited a branch in person, submitted a paper draft, waited on manual picking, and received a manually adjusted invoice, with no self-service option and no ability to order outside business hours. Following the ERP implementation that gave the business reliable real-time inventory and pricing data, the organization moved to extend that same operational foundation into a digital B2B ordering channel.
+The goals were 24/7 ordering for verified accounts, less manual order handling, tiered pricing applied correctly to each customer segment, regional minimum order values, live stock accuracy between the platform and the ERP with no online overselling, ordering restricted to verified accounts, and credit terms built into the account structure.
 
----
+**In scope:** 8,000+ active SKUs read live from the ERP, 5-tier customer segmentation and pricing, the ERP integration, a payment gateway (MADA, Visa, Mastercard, Apple Pay), regional delivery rules, a logistics tracking API, and the customer registration and verification workflow. A B2C-ready architecture was built but left inactive for a future decision.
 
-## Business Objectives
+**Out of scope:** activating B2C, a native mobile app, platform-side inventory, and AI-driven pricing.
 
-- Enable 24/7 digital ordering for verified B2B customers.
-- Reduce manual wholesale order handling by shifting volume to the digital channel.
-- Enforce tiered pricing digitally, correctly applied per verified customer segment.
-- Prevent orders below regional minimum thresholds.
-- Maintain real-time inventory accuracy between the platform and the ERP, eliminating online oversell.
-- Restrict ordering to verified B2B accounts only.
-- Enforce credit terms structurally: net terms for lower-risk tiers, prepayment for higher-risk tiers.
+## My role
 
----
+I studied and scoped the channel before the project formally started, so I was part of the decision to build it. From early 2023 the platform was my main responsibility, and ERP work became secondary support.
 
-## Project Scope
+An external vendor built the platform. I owned the business side: I ran workshops with the commercial, finance, and operations teams, designed the order lifecycle, pricing, and delivery rules, wrote the specifications the vendor built against, and reviewed what was delivered against them. I managed the backlog with the vendor in Jira, ordered it by how important each requirement was for the next release, logged defects with the vendor, and followed them up. I coordinated UAT, tested the platform myself, and took part in the Go/No-Go decision.
 
-- 8,000+ active SKUs.
-- 5-tier customer segmentation and pricing engine.
-- Real-time ERP inventory and pricing integration. The ERP remained the single source of truth; no platform-side stock table.
-- Payment gateway integration (MADA, Visa, Mastercard, Apple Pay).
-- Regional delivery rules with minimum order and delivery fee logic.
-- Logistics API integration for fulfillment tracking.
-- Customer registration and verification workflow (CR + VAT upload, business type classification, tier assignment).
-- B2C-ready architecture built but left inactive: configuration-only future activation, not part of this project's active scope.
+## What I designed
 
-**Out of scope:** B2C activation, native mobile app, platform-side inventory management, AI-driven pricing.
+### Customer access
 
----
-
-## My Role
-
-**Role:** E-commerce Solutions Analyst
-**Company:** Mohd. Saeed Balbid Company
-**Project period:** Feb 2023 – May 2025
-
-From early 2023 this platform was my main responsibility, and ERP work became secondary support.
-
-My involvement began before the formal project start. During the preceding period, following the ERP implementation, I studied and scoped the planned digital commerce channel ahead of the formal engagement, positioning me as part of the decision to pursue the project, not only its later execution. Once the project formally started, aligned with vendor contracting, the platform itself was built by an external service provider. This was a vendor-led development effort, not an internal build. My responsibility was designing the order lifecycle, pricing model, and delivery rules based on requirements gathered through stakeholder workshops and business discussions, then coordinating with the vendor and technical team through testing and launch to ensure those requirements were implemented correctly.
-
----
-
-## Requirements & Stakeholder Alignment
-
-Requirements were gathered through stakeholder workshops and business discussions, covering the commercial, finance, and operational functions the platform needed to serve. Core requirements translated directly into platform design decisions: verified-only B2B access (no self-registration into an active account), tier-based pricing and credit terms, region-based delivery logic, and real-time dependency on the ERP for both stock and pricing data, deliberately avoiding a duplicate, platform-side inventory record that could drift out of sync.
-
----
-
-## Product & Pricing Design
-
-### Catalog Structuring
-The product catalog covered 8,000+ active SKUs, sourced live from the ERP rather than maintained separately on the platform. Any stock or pricing change in the ERP reflected immediately on the platform.
-
-### Product Content Coordination
-Stock quantities and pricing were fully automated from the ERP, but product content such as images, descriptions, and translations was not stored in the ERP and required direct entry and maintenance on the platform. Coordinated this content workflow with a small support team, keeping it separate from the automated stock and pricing feed to preserve the ERP's role as the single source of truth for those two data points.
-
-### Pricing Model
-A 5-tier pricing structure was designed, mapped to customer risk and payment terms rather than a flat wholesale discount:
-
-| Tier | Segment | Payment Terms |
-|---|---|---|
-| Tier 1 | Hotels / Large F&B Chains | Net 30 days |
-| Tier 2 | Restaurants / Cafes | Net 15 days |
-| Tier 3 | Charities / NGOs | Prepaid |
-| Tier 4 | Resellers / Delivery Apps | Prepaid |
-| Tier 5 | Standard / Other B2B | Prepaid |
-
-Net-term tiers (1–2) required a promissory note before activation; prepaid tiers did not. Credit exceeded on a net-term account blocked the order at checkout, mirroring the same credit control principle already enforced in the ERP.
-
-### Delivery Rules
-Delivery logic was defined by region rather than a flat nationwide rate. Minimum order value, delivery fee, and free-delivery threshold each varied by region, with fees calculated automatically at checkout rather than entered manually.
-
----
-
-## Vendor-Led Development & Coordination
-
-The platform was developed by an external service provider. My role throughout the build was to act as the business-side owner of the requirements, translating stakeholder input into specifications the vendor could build against, reviewing implementation against those specifications, and escalating gaps. I managed the backlog with the vendor in Jira. I ordered items by how important each requirement was for the next release, and logged defects with the vendor and followed them up.
-
----
-
-## Integrations
-
-- **ERP Integration:** Real-time stock and pricing feed; the ERP remained the single source of truth for both.
-- **Payment gateway:** Integration supporting MADA, Visa, Mastercard, and Apple Pay for prepaid-tier checkout.
-- **SMS Integration:** Coordinated as part of the platform's customer communication capability.
-
-Each integration was coordinated with the vendor and validated as part of the testing phase below.
-
----
-
-## Testing & Quality Assurance
-
-I coordinated UAT with business users and also performed hands-on testing myself to validate business processes and system functionality, not solely relying on the vendor's own QA. I participated directly in the Go/No-Go decision ahead of launch, and acted as the primary liaison between business stakeholders, the external service provider, and the technical team to ensure business requirements were correctly implemented and that issues were resolved before production deployment.
-
----
-
-## Launch
-
-The platform launched as the digital extension of the existing wholesale channel, restricted to verified B2B accounts from day one. No open self-service registration into an active, ordering-capable account.
-
----
-
-## Customer Onboarding Support
-
-Occasionally supported customer conversations during account onboarding, including product walkthroughs and commercial discussions, alongside the commercial team. Final negotiation and closing responsibility for these accounts sat with the commercial team, not with this role independently.
-
-
----
-
-## Visual Documentation
-
-*The diagrams show only flows and structures described in this dossier.*
-
-### Business Process Flow: Registration & Verification
+Only verified businesses can order, and nobody can register straight into an active account. A customer registers, uploads CR and VAT documents, selects a business type, and the application goes for review. A rejected application gets a reason. An approved account is assigned one of the 5 tiers, Finance sets the credit limit, and net-term tiers need a signed guarantee before activation.
 
 ```mermaid
 flowchart TD
@@ -136,24 +38,51 @@ flowchart TD
     E -->|Yes| G[Tier Assigned]
     G --> H[Credit Limit Set by Finance]
     H --> I{Tier 1 or 2?}
-    I -->|Yes| J[Promissory Note Required]
+    I -->|Yes| J[Signed Guarantee Required]
     I -->|No| K[Account Activated]
     J --> K
 ```
 
-### Business Rule Decision Flow: Pricing & Credit Tier
+### Pricing and credit
+
+The tiers follow payment risk instead of a single wholesale discount.
+
+| Tier | Segment | Terms |
+|---|---|---|
+| 1 | Hotels and large F&B chains | Longer net terms, signed guarantee required |
+| 2 | Restaurants and cafes | Shorter net terms, signed guarantee required |
+| 3 | Charities and NGOs | Prepaid |
+| 4 | Resellers and delivery apps | Prepaid |
+| 5 | Other B2B customers | Prepaid |
+
+A net-term order that goes over the customer's credit limit is blocked at checkout. It is the same credit control the ERP already applied in the branches, used again in a new channel.
 
 ```mermaid
 flowchart TD
     A[Customer Segment Identified] --> B{Tier}
-    B -->|Tier 1: Hotels / Large Chains| C[Net 30 - Promissory Note Required]
-    B -->|Tier 2: Restaurants / Cafes| D[Net 15 - Promissory Note Required]
+    B -->|Tier 1: Hotels / Large Chains| C[Longer Net Terms - Guarantee Required]
+    B -->|Tier 2: Restaurants / Cafes| D[Shorter Net Terms - Guarantee Required]
     B -->|Tier 3: Charities / NGOs| E[Prepaid]
     B -->|Tier 4: Resellers / Delivery Apps| F[Prepaid]
-    B -->|Tier 5: Standard / Other B2B| G[Prepaid]
+    B -->|Tier 5: Other B2B| G[Prepaid]
 ```
 
-### High-Level Business Architecture
+### Delivery
+
+Delivery is priced by region, not at a flat national rate. The minimum order value, the delivery fee, and the free-delivery threshold differ across 4 regions, and the platform calculates them at checkout.
+
+### Catalog and product content
+
+The 8,000+ SKUs come live from the ERP, so any change to stock or price in the ERP shows on the platform immediately. Images, descriptions, and translations were not held in the ERP, so I coordinated a small team that maintained that content on the platform. Keeping it separate protected the ERP's role as the only source for stock and prices.
+
+## Integrations
+
+- **ERP:** live stock and price feed, with the ERP as the single source of truth.
+- **Payment gateway:** MADA, Visa, Mastercard, and Apple Pay for prepaid tiers.
+- **SMS:** customer notifications.
+- **Logistics provider:** order tracking after confirmation.
+
+I coordinated each integration with the vendor, and each was checked during testing.
 
 ```mermaid
 flowchart LR
@@ -166,7 +95,34 @@ flowchart LR
     Omar -. liaison .-> Vendor[External Development Vendor]
 ```
 
-### Stakeholder Map
+## Testing and launch
+
+I coordinated UAT with business users and tested the business processes and system behavior myself, instead of relying only on the vendor's QA. I was the main contact between the business, the vendor, and the internal technical team until issues were closed, and I took part in the Go/No-Go decision. The platform launched as a digital extension of the wholesale channel, open only to verified B2B accounts from the first day.
+
+```mermaid
+flowchart LR
+    A[Requirements and Stakeholder Alignment] --> B[Product and Pricing Design]
+    B --> C[Vendor-Led Development]
+    C --> D[Testing and QA]
+    D --> E[Launch]
+```
+
+The chart shows the order of the stages only. No internal stage dates are documented beyond the project period.
+
+## Customer onboarding
+
+I sometimes joined customer conversations during account onboarding, including product walkthroughs and commercial discussions, alongside the commercial team. Negotiation and closing stayed with that team.
+
+## Outcome
+
+The platform replaced in-person wholesale ordering with self-service, improved stock synchronization between the platform and the ERP, and reduced manual order handling. It supported more than 500 B2B customers, with the 5-tier pricing model and 4 delivery regions in place. A set of post-launch KPI targets was drafted, but those were targets, not measured results, so they are not reported here.
+
+| Aspect | Before | After |
+|---|---|---|
+| Ordering hours | Business hours only | 24/7 |
+| Process | Branch visit and paper draft | Self-service ordering |
+| Staff involvement | Needed for every order | Not needed per order |
+| Order history | Not available to the customer | Available in the customer portal |
 
 ```mermaid
 flowchart TD
@@ -181,53 +137,4 @@ flowchart TD
     Center --- Cust[B2B Customers]
 ```
 
-### Delivery Stage Sequence
-
-```mermaid
-flowchart LR
-    A[Requirements and Stakeholder Alignment] --> B[Product and Pricing Design]
-    B --> C[Vendor-Led Development]
-    C --> D[Testing and QA]
-    D --> E[Launch]
-```
-*Reflects confirmed stage order only. No specific internal stage dates are documented beyond the confirmed project period (Feb 2023 to May 2025).*
-
-### Before vs. After: Wholesale Ordering
-
-| Aspect | Before (Physical-Only) | After (Digital Platform) |
-|---|---|---|
-| Ordering Hours | Business hours only | 24/7 |
-| Process | In-person visit, paper draft | Self-service digital ordering |
-| Staff Involvement | Required for every order | Not required per order |
-| Order History Access | Not available to customer | Available in customer portal |
-
----
-
-## Business Outcomes
-
-- Digitized the B2B ordering process, replacing a physical-only wholesale journey with a self-service digital channel.
-- Improved inventory synchronization between the platform and the ERP.
-- Reduced manual order processing.
-- Supported business operations involving more than 500 B2B customers.
-- Implemented a 5-tier pricing model.
-- Defined 4 regional delivery zones.
-
-
-
----
-
-## Skills Demonstrated
-
-- B2B E-commerce Platform Requirements Design
-- Order Lifecycle and Pricing Model Design
-- Regional Business Rule Design (delivery logic)
-- Vendor Management and Coordination
-- Cross-functional Liaison (business, vendor, technical team)
-- UAT Coordination and Hands-on Testing
-- Go/No-Go Launch Decision Participation
-- ERP-to-Platform Integration Coordination (ERP, payment gateway, SMS)
-- Product Content Coordination (catalog images, descriptions, translations)
-- Small Team Coordination (non-managerial)
-- Jira Backlog Management and Release Prioritization
-
----
+The platform depends on the ERP from the [Multi-Branch ERP Implementation](https://github.com/omaralburiki/Multi-Branch-ERP-Implementation).
