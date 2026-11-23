@@ -4,7 +4,7 @@
 
 ## Overview
 
-Business-side design and delivery of a B2B e-commerce platform extending an established multi-branch FMCG operation into a digital ordering channel. Integrated with the live ERP for real-time inventory and pricing, HyperPay for payment processing, and a logistics provider for fulfillment. The platform served verified B2B customers exclusively, replacing physical-only wholesale ordering with 24/7 self-service.
+Business-side design and delivery of a B2B e-commerce platform extending an established multi-branch FMCG operation into a digital ordering channel. Integrated with the live ERP for real-time inventory and pricing, a payment gateway for payment processing, and a logistics provider for fulfillment. The platform served verified B2B customers exclusively, replacing physical-only wholesale ordering with 24/7 self-service.
 
 ---
 
@@ -31,7 +31,7 @@ Wholesale ordering had previously been physical-only: customers visited a branch
 - 8,000+ active SKUs.
 - 5-tier customer segmentation and pricing engine.
 - Real-time ERP inventory and pricing integration. The ERP remained the single source of truth; no platform-side stock table.
-- HyperPay payment gateway integration (MADA, Visa, Mastercard, Apple Pay).
+- Payment gateway integration (MADA, Visa, Mastercard, Apple Pay).
 - Regional delivery rules with minimum order and delivery fee logic.
 - Logistics API integration for fulfillment tracking.
 - Customer registration and verification workflow (CR + VAT upload, business type classification, tier assignment).
@@ -43,9 +43,11 @@ Wholesale ordering had previously been physical-only: customers visited a branch
 
 ## My Role
 
-**Title:** Business Systems Analyst
+**Role:** E-commerce Solutions Analyst
 **Company:** Mohd. Saeed Balbid Company
-**Duration:** Feb 2023 – May 2025 
+**Project period:** Feb 2023 – May 2025
+
+From early 2023 this platform was my main responsibility, and ERP work became secondary support.
 
 My involvement began before the formal project start. During the preceding period, following the ERP implementation, I studied and scoped the planned digital commerce channel ahead of the formal engagement, positioning me as part of the decision to pursue the project, not only its later execution. Once the project formally started, aligned with vendor contracting, the platform itself was built by an external service provider. This was a vendor-led development effort, not an internal build. My responsibility was designing the order lifecycle, pricing model, and delivery rules based on requirements gathered through stakeholder workshops and business discussions, then coordinating with the vendor and technical team through testing and launch to ensure those requirements were implemented correctly.
 
@@ -85,14 +87,14 @@ Delivery logic was defined by region rather than a flat nationwide rate. Minimum
 
 ## Vendor-Led Development & Coordination
 
-The platform was developed by an external service provider. My role throughout the build was to act as the business-side owner of the requirements, translating stakeholder input into specifications the vendor could build against, reviewing implementation against those specifications, and escalating gaps. Backlog and issue tracking with the vendor was managed through Jira.
+The platform was developed by an external service provider. My role throughout the build was to act as the business-side owner of the requirements, translating stakeholder input into specifications the vendor could build against, reviewing implementation against those specifications, and escalating gaps. I managed the backlog with the vendor in Jira. I ordered items by how important each requirement was for the next release, and logged defects with the vendor and followed them up.
 
 ---
 
 ## Integrations
 
 - **ERP Integration:** Real-time stock and pricing feed; the ERP remained the single source of truth for both.
-- **HyperPay:** Payment gateway integration supporting MADA, Visa, Mastercard, and Apple Pay for prepaid-tier checkout.
+- **Payment gateway:** Integration supporting MADA, Visa, Mastercard, and Apple Pay for prepaid-tier checkout.
 - **SMS Integration:** Coordinated as part of the platform's customer communication capability.
 
 Each integration was coordinated with the vendor and validated as part of the testing phase below.
@@ -120,7 +122,7 @@ Occasionally supported customer conversations during account onboarding, includi
 
 ## Visual Documentation
 
-*Diagrams below reflect only flows and structure confirmed in this dossier's Evidence Mapping.*
+*The diagrams show only flows and structures described in this dossier.*
 
 ### Business Process Flow: Registration & Verification
 
@@ -157,10 +159,10 @@ flowchart TD
 flowchart LR
     Customer[B2B Customer] --> Platform[E-commerce Platform - Built by External Vendor]
     Platform <--> ERP[ERP - Single Source of Truth for Stock and Pricing]
-    Platform --> HyperPay[HyperPay Payment Gateway]
+    Platform --> PG[Payment Gateway]
     Platform --> SMS[SMS Notifications]
     Platform --> Logistics[Logistics Provider]
-    Omar[Business Systems Analyst] -. requirements and coordination .-> Platform
+    Omar[E-commerce Solutions Analyst] -. requirements and coordination .-> Platform
     Omar -. liaison .-> Vendor[External Development Vendor]
 ```
 
@@ -169,12 +171,12 @@ flowchart LR
 ```mermaid
 flowchart TD
     Center((B2B E-commerce Platform))
-    Center --- BSA[Business Systems Analyst]
+    Center --- ESA[E-commerce Solutions Analyst]
     Center --- FM[Finance Manager]
     Center --- CM[Commercial / Sales Manager]
     Center --- OM[Operations Manager]
     Center --- IT[IT Administrator]
-    Center --- HP[HyperPay]
+    Center --- PG[Payment Gateway Provider]
     Center --- LP[Logistics Provider]
     Center --- Cust[B2B Customers]
 ```
@@ -206,7 +208,6 @@ flowchart LR
 - Digitized the B2B ordering process, replacing a physical-only wholesale journey with a self-service digital channel.
 - Improved inventory synchronization between the platform and the ERP.
 - Reduced manual order processing.
-- Created a scalable platform supporting future business growth.
 - Supported business operations involving more than 500 B2B customers.
 - Implemented a 5-tier pricing model.
 - Defined 4 regional delivery zones.
@@ -224,9 +225,9 @@ flowchart LR
 - Cross-functional Liaison (business, vendor, technical team)
 - UAT Coordination and Hands-on Testing
 - Go/No-Go Launch Decision Participation
-- ERP-to-Platform Integration Coordination (ERP, HyperPay, SMS)
+- ERP-to-Platform Integration Coordination (ERP, payment gateway, SMS)
 - Product Content Coordination (catalog images, descriptions, translations)
 - Small Team Coordination (non-managerial)
-- Jira Backlog Management
+- Jira Backlog Management and Release Prioritization
 
 ---
