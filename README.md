@@ -1,8 +1,8 @@
 # B2B E-commerce Implementation
 
-A B2B ordering platform built by an external vendor on top of a live ERP. I owned the business side: who can order, how customers are priced and given credit, how delivery is charged, and how the platform works with the ERP.
+A B2B e-commerce platform built by an external vendor on top of a live ERP. I led the project on the company side and owned the business design: who can order, how customers are priced and given credit, how delivery is charged, and how the platform works with the ERP.
 
-**FMCG retailer and wholesaler, Saudi Arabia · Feb 2023 – May 2025 · Role: E-commerce Solutions Analyst**
+**FMCG retailer and wholesaler, Saudi Arabia · Feb 2023 – May 2025 · Role: E-commerce Solutions Lead**
 
 ## Background
 
@@ -30,15 +30,17 @@ A net-term order that goes over the customer's credit limit is blocked at checko
 
 **Integrations.** The platform reads stock and prices live from the ERP and keeps no copy of its own, so the two cannot drift apart. I also defined the requirements for the payment gateway (MADA, Visa, Mastercard, Apple Pay), SMS notifications, and the logistics provider's tracking API.
 
-## Working with the vendor
+## Leading the project
 
-The vendor built the platform and I owned the requirements. I turned workshop outcomes into specifications, reviewed what the vendor delivered against them, and escalated gaps. In Jira I ordered the backlog by how important each requirement was for the next release, logged defects with the vendor, and followed them up. Before launch I coordinated UAT with business users, tested the platform myself, and took part in the Go/No-Go decision.
+I led the B2B e-commerce project on the company side, managing delivery from business requirements and release planning through vendor coordination, testing, and launch readiness. I set release scope and priorities, approved the vendor's timelines, reviewed change requests and milestone payments, and reported status to management.
 
-Product content such as images, descriptions, and translations was not stored in the ERP, so I coordinated a small team that maintained it on the platform. I also joined some customer onboarding conversations with the commercial team; negotiation and closing stayed with that team.
+The vendor built the platform against my specifications. In Jira I ordered the backlog by how important each requirement was for the next release, logged defects with the vendor, and followed them up. Before launch I coordinated UAT with business users, tested the platform myself, and took part in the Go/No-Go decision.
+
+Product content such as images, descriptions, and translations was not stored in the ERP, so I led the content team that maintained it on the platform. I set the product categorization and the standards for images and descriptions, decided which products to add, and reviewed the quality of the work. I also joined new business accounts during onboarding alongside the commercial team, with product walkthroughs and commercial discussions.
 
 ## Outcome
 
-The platform launched for verified B2B accounts only and supported more than 500 B2B customers across 8,000+ active SKUs. Wholesale ordering moved from branch visits to self-service, with less manual order handling. A set of post-launch KPI targets was drafted, but those were targets, not measured results, so they are not reported here.
+The platform launched for verified B2B accounts only and supported more than 500 B2B customers across 8,000+ active SKUs. Wholesale ordering moved from branch visits to self-service. A set of post-launch KPI targets was drafted, but those were targets, not measured results, so they are not reported here.
 
 ## Related project
 
@@ -46,5 +48,5 @@ The platform depends on the ERP delivered in the [Multi-Branch ERP Implementatio
 
 ## Documents
 
-- [Full case study](docs/Project-Dossier.md): requirements, pricing and delivery design, integrations, testing, and diagrams.
+- [Full case study](docs/Case-Study.md): how the project was led, the pricing, credit, and delivery design, the integration architecture, the release cycle, and testing.
 - [Business Requirements & Design Specification](docs/BRD.md): platform requirements, business rules, and UAT validation. This is a representative version; the original belongs to the company.

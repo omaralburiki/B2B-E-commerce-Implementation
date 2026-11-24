@@ -10,7 +10,7 @@
 | Field | Value |
 |---|---|
 | Document Title | B2B E-commerce Platform: Business Requirements & Design Specification |
-| Prepared By | Omar Ahmed Al-Buriki, E-commerce Solutions Analyst |
+| Prepared By | Omar Ahmed Omar Alburiki, E-commerce Solutions Lead |
 | Organization | Multi-branch FMCG retailer and wholesaler, Saudi Arabia |
 | Project Duration | Feb 2023 to May 2025 (formal start; early scoping preceded this period) |
 | Development Model | Vendor-led (external service provider); business-side requirements owned internally |
@@ -92,7 +92,7 @@ Following the ERP implementation that gave the business reliable real-time inven
 
 | Stakeholder | Role | Requirements Involvement |
 |---|---|---|
-| E-commerce Solutions Analyst (Omar) | Requirements owner | Gathered requirements through workshops; designed order lifecycle, pricing model, and delivery rules; reviewed vendor implementation against specification |
+| E-commerce Solutions Lead (Omar) | Project lead (company side) and requirements owner | Gathered requirements through workshops; designed order lifecycle, pricing model, and delivery rules; set release scope and priorities; reviewed vendor delivery, change requests, and milestones against the specification |
 | Finance Manager | Requirement source, approval authority | Credit terms design, credit limit assignment at account activation |
 | Commercial / Sales Manager | Requirement source | Customer segmentation, tier criteria |
 | Operations Manager | Requirement source | Delivery logic, fulfillment coordination |
