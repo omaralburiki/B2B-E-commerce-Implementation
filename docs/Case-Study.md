@@ -48,7 +48,7 @@ flowchart TB
         U --> G{"Go/No-Go"}
         G --> L["Launch"]
     end
-    B --> V
+    R1 --> R2
     style R1 fill:none,stroke:none
     style R2 fill:none,stroke:none
 ```
